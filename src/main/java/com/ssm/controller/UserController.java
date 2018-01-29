@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
-
+import java.util.List;
 
 
 @Controller
@@ -34,9 +34,9 @@ public class UserController {
 
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    private String list(Model model) {
-        //List<User> list = iUserService.getList();
-        model.addAttribute("list", "aa");
+    private String list(String username, String password, HttpSession sessionl) {
+        ServerResponse<User> response = iUserService.login("admin","123");
+       // model.addAttribute("list", "aa");
         // list.jsp + model = ModelAndView
         return "list";
     }
