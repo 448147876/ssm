@@ -47,6 +47,8 @@
 
         <!-- 验证连接有效与否的SQL，不同的数据配置不同 -->
         <property name="validationQuery" value="select 1 "/>
+
+        <property name="filters" value="stat" />
     </bean>
 
     <!-- 3.配置SqlSessionFactory对象 -->
