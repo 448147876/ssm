@@ -1,4 +1,4 @@
-package com.ssm.dao;
+package com.ssm.dao.user;
 
 
 import com.ssm.pojo.User;

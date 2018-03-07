@@ -13,8 +13,8 @@
     -->
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="true">
-            <ref bean="stringHttpMessageConverter" />
-            <ref bean="fastJsonHttpMessageConverter" />
+            <ref bean="stringHttpMessageConverter"/>
+            <ref bean="fastJsonHttpMessageConverter"/>
         </mvc:message-converters>
     </mvc:annotation-driven>
 
@@ -57,13 +57,30 @@
 
     <!-- 3.配置jsp 显示ViewResolver -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
-        <property name="prefix" value="/WEB-INF/jsp/" />
-        <property name="suffix" value=".jsp" />
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
     </bean>
 
     <!-- 4.扫描web相关的bean -->
-    <context:component-scan base-package="com.ssm.controller" />
+    <context:component-scan base-package="com.ssm.controller"/>
+
+    <!-- 拦截器配置 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/ssm/**"/>
+            <mvc:exclude-mapping path="/ssm"/>
+            <mvc:exclude-mapping path="/**/*.css"/>
+            <mvc:exclude-mapping path="/**/*.js"/>
+            <mvc:exclude-mapping path="/**/*.png"/>
+            <mvc:exclude-mapping path="/**/*.gif"/>
+            <mvc:exclude-mapping path="/**/*.jpg"/>
+            <mvc:exclude-mapping path="/**/*.jpeg"/>
+
+            <mvc:exclude-mapping path="/ssm/login/toLogin"/>
+            <bean class="com.ssm.sys.filter.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 
 </beans>

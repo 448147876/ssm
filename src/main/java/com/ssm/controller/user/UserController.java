@@ -1,18 +1,16 @@
-package com.ssm.controller;
+package com.ssm.controller.user;
 
 
 import com.ssm.common.ServerResponse;
 import com.ssm.pojo.User;
-import com.ssm.service.IUserService;
+import com.ssm.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 
 @Controller
@@ -37,8 +35,7 @@ public class UserController {
     private String list(String username, String password, HttpSession sessionl) {
         ServerResponse<User> response = iUserService.login("admin","123");
        // model.addAttribute("list", "aa");
-        // list.jsp + model = ModelAndView
-        return "list";
+        return "login/loginIndex";
     }
 
 

@@ -2,6 +2,10 @@ package com.ssm.pojo;
 
 import java.util.Date;
 
+/**
+ * 用户对象
+ * @Author asus
+ */
 public class User {
     private Integer id;
 

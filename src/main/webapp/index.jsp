@@ -1,5 +1,9 @@
 <html>
+<script type="application/javascript">
+    window.location.href="ssm";
+
+</script>
 <body>
-<h2>Hello World!</h2>
+
 </body>
 </html>
