@@ -51,24 +51,24 @@
 
     <filter-mapping>
         <filter-name>DruidWebStatFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/ssm/*</url-pattern>
     </filter-mapping>
 
     <servlet-mapping>
         <servlet-name>DruidStatView</servlet-name>
-        <url-pattern>/druid/*</url-pattern>
+        <url-pattern>/ssm/druid/*</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>mvc-dispatcher</servlet-name>
         <!-- 默认匹配所有的请求 -->
-        <url-pattern>/</url-pattern>
+        <url-pattern>/ssm/*</url-pattern>
     </servlet-mapping>
 
 
 
 
-    <!-- 登录过滤器 -->
+     <!--登录过滤器-->
     <!--<filter>-->
         <!--<description>登录过滤器</description>-->
         <!--<filter-name>loginFilter</filter-name>-->

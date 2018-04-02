@@ -24,16 +24,16 @@ public class UserController {
     @RequestMapping(value = "login.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<User> login(String username, String password, HttpSession session){
-        ServerResponse<User> response = iUserService.login(username,password);
+        //ServerResponse<User> response = iUserService.login(username,password);
 
 
-        return response;
+        return null;
     }
 
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     private String list(String username, String password, HttpSession sessionl) {
-        ServerResponse<User> response = iUserService.login("admin","123");
+        //ServerResponse<User> response = iUserService.login("admin","123");
        // model.addAttribute("list", "aa");
         return "login/loginIndex";
     }

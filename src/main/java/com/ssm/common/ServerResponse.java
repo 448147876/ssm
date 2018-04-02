@@ -4,82 +4,169 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 import java.io.Serializable;
+import java.util.Objects;
 
-@JsonSerialize(include =  JsonSerialize.Inclusion.NON_NULL)
 //保证序列化json的时候,如果是null的对象,key也会消失
+@JsonSerialize(include =  JsonSerialize.Inclusion.NON_NULL)
 public class ServerResponse<T> implements Serializable {
 
-    private int status;
+    public final static String SUCCESS = "1";
+    public final static String ERROR = "0";
+    public final static Boolean TRUE = true;
+    public final static Boolean FALSE = false;
+
+    private String status;
     private String msg;
+    @JsonIgnore
+    private Boolean success;
     private T data;
 
-    private ServerResponse(int status){
-        this.status = status;
-    }
-    private ServerResponse(int status,T data){
-        this.status = status;
-        this.data = data;
-    }
 
-    private ServerResponse(int status,String msg,T data){
-        this.status = status;
-        this.msg = msg;
-        this.data = data;
-    }
-
-    private ServerResponse(int status,String msg){
-        this.status = status;
-        this.msg = msg;
-    }
-
-    @JsonIgnore
-    //使之不在json序列化结果当中
-    public boolean isSuccess(){
-        return this.status == ResponseCode.SUCCESS.getCode();
-    }
-
-    public int getStatus(){
+    public String getStatus() {
         return status;
     }
-    public T getData(){
-        return data;
+
+    private void setStatus(String status) {
+        this.status = status;
+        if(Objects.equals(status,SUCCESS)){
+            success = TRUE;
+        }else{
+            success = FALSE;
+        }
     }
-    public String getMsg(){
+
+    public String getMsg() {
         return msg;
     }
 
-
-    public static <T> ServerResponse<T> createBySuccess(){
-        return new ServerResponse<T>(ResponseCode.SUCCESS.getCode());
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
-    public static <T> ServerResponse<T> createBySuccessMessage(String msg){
-        return new ServerResponse<T>(ResponseCode.SUCCESS.getCode(),msg);
+    public Boolean getSuccess() {
+        return success;
     }
 
-    public static <T> ServerResponse<T> createBySuccess(T data){
-        return new ServerResponse<T>(ResponseCode.SUCCESS.getCode(),data);
+    private void setSuccess(Boolean success) {
+        this.success = success;
+
+        if(Objects.equals(status,SUCCESS)){
+            success = TRUE;
+        }else{
+            success = FALSE;
+        }
+
     }
 
-    public static <T> ServerResponse<T> createBySuccess(String msg,T data){
-        return new ServerResponse<T>(ResponseCode.SUCCESS.getCode(),msg,data);
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
+
+    public static <T> ServerResponse<T> SUCCESS() {
+        ServerResponse<T> ServerResponse = new ServerResponse<T>();
+
+        ServerResponse.setStatus(SUCCESS);
+        ServerResponse.setSuccess(true);
+
+
+        return ServerResponse;
+    }
+
+    public static <T> ServerResponse<T> SUCCESS(String msg) {
+        ServerResponse<T> ServerResponse = new ServerResponse<T>();
+
+        ServerResponse.setStatus(SUCCESS);
+        ServerResponse.setSuccess(true);
+        ServerResponse.setMsg(msg);
+
+
+        return ServerResponse;
     }
 
 
-    public static <T> ServerResponse<T> createByError(){
-        return new ServerResponse<T>(ResponseCode.ERROR.getCode(),ResponseCode.ERROR.getDesc());
+    public static <T> ServerResponse<T> SUCCESS(String msg, T data) {
+        ServerResponse<T> ServerResponse = new ServerResponse<T>();
+
+        ServerResponse.setStatus(SUCCESS);
+        ServerResponse.setSuccess(true);
+        ServerResponse.setMsg(msg);
+
+        ServerResponse.setData(data);
+
+        return ServerResponse;
     }
 
 
-    public static <T> ServerResponse<T> createByErrorMessage(String errorMessage){
-        return new ServerResponse<T>(ResponseCode.ERROR.getCode(),errorMessage);
+    public static <T> ServerResponse<T> SUCCESS(T data) {
+        ServerResponse<T> ServerResponse = new ServerResponse<T>();
+
+        ServerResponse.setStatus(SUCCESS);
+        ServerResponse.setSuccess(true);
+
+        ServerResponse.setData(data);
+
+        return ServerResponse;
     }
 
-    public static <T> ServerResponse<T> createByErrorCodeMessage(int errorCode,String errorMessage){
-        return new ServerResponse<T>(errorCode,errorMessage);
+
+    public static <T> ServerResponse<T> ERROR() {
+        ServerResponse<T> ServerResponse = new ServerResponse<T>();
+
+        ServerResponse.setStatus(ERROR);
+        ServerResponse.setSuccess(false);
+
+
+        return ServerResponse;
+    }
+
+    public static <T> ServerResponse<T> ERROR(String msg) {
+        ServerResponse<T> ServerResponse = new ServerResponse<T>();
+
+        ServerResponse.setStatus(ERROR);
+        ServerResponse.setSuccess(false);
+        ServerResponse.setMsg(msg);
+
+
+        return ServerResponse;
     }
 
 
+    public static <T> ServerResponse<T> ERROR(String msg, T data) {
+        ServerResponse<T> ServerResponse = new ServerResponse<T>();
+
+        ServerResponse.setStatus(ERROR);
+        ServerResponse.setSuccess(false);
+        ServerResponse.setMsg(msg);
+
+        ServerResponse.setData(data);
+
+        return ServerResponse;
+    }
+
+
+    public static <T> ServerResponse<T> ERROR(T data) {
+        ServerResponse<T> ServerResponse = new ServerResponse<T>();
+
+        ServerResponse.setStatus(ERROR);
+        ServerResponse.setSuccess(false);
+
+        ServerResponse.setData(data);
+
+        return ServerResponse;
+    }
+
+
+    public Boolean isSuccess() {
+        if (status == SUCCESS) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 
 

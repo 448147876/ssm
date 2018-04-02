@@ -68,7 +68,8 @@
     <!-- 拦截器配置 -->
     <mvc:interceptors>
         <mvc:interceptor>
-            <mvc:mapping path="/ssm/**"/>
+            <!--<mvc:mapping path="/ssm/**"/>-->
+            <mvc:mapping path="/**"/>
             <mvc:exclude-mapping path="/ssm"/>
             <mvc:exclude-mapping path="/**/*.css"/>
             <mvc:exclude-mapping path="/**/*.js"/>
