@@ -8,6 +8,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Objects;
 
 public class LoginInterceptor implements HandlerInterceptor {
 
@@ -17,11 +18,17 @@ public class LoginInterceptor implements HandlerInterceptor {
         HttpSession session = request.getSession();
 
         Cookie[] cookies = request.getCookies();
-
+        Boolean loginBoo = false;
+        for(Cookie cookie:cookies){
+            String name = cookie.getName();
+            if(Objects.equals("ticket",name)){
+                loginBoo = true;
+                break;
+            }
+        }
         User user = (User) session.getAttribute("user");
-        if (user == null) {
-//            response.sendRedirect("/ssm");
-            request.getRequestDispatcher("/WEB-INF/jsp/login/loginIndex.jsp").forward(request, response);
+        if (!loginBoo) {
+            response.sendRedirect("/ssm");
             return false;
         }else{
             return true;

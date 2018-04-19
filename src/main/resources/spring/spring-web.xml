@@ -78,7 +78,7 @@
             <mvc:exclude-mapping path="/**/*.jpg"/>
             <mvc:exclude-mapping path="/**/*.jpeg"/>
 
-            <mvc:exclude-mapping path="/ssm/login/toLogin"/>
+            <mvc:exclude-mapping path="/**/*.login"/>
             <bean class="com.ssm.sys.filter.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>

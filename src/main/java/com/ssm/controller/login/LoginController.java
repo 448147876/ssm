@@ -34,9 +34,9 @@ public class LoginController {
         return "login/loginIndex";
     }
 
-    @RequestMapping(value = "/toLogin", method = RequestMethod.POST)
+    @RequestMapping(value = "/toLogin.login", method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse<User> loginIn(User user, HttpServletResponse response) {
+    public ServerResponse<User> loginIn(User user, HttpServletResponse response,HttpServletRequest request) {
         if (user != null) {
             if(StringUtils.isBlank(user.getUsername())){
                 return ServerResponse.ERROR("用户名为空");

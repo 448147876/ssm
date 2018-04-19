@@ -12,10 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginIndexController {
 
     @RequestMapping("/ssm")
-    public String gotoLoginIndex(HttpServletResponse response, HttpServletRequest request){
+    public String gotoLoginIndex(){
 
         return "login/loginIndex";
     }
 
+    @RequestMapping("/main")
+    public String gotoMIanIndex(){
+
+        return "main/main";
+    }
 
 }

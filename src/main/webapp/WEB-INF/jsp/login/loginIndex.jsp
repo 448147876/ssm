@@ -17,7 +17,7 @@
         var password = $('#password').val();
         var validationCode = $('#validationCode').val();
         $.ajax({
-            url: 'ssm/login/toLogin',
+            url: 'ssm/login/toLogin.login',
             type: 'POST',
             async: true,    //或false,是否异步
             data: {
@@ -34,6 +34,9 @@
                 console.log(data)
                 console.log(textStatus)
                 console.log(jqXHR)
+                if(data.status == '1'){
+                    window.location.href="ssm/main";
+                }
             },
             error: function (xhr, textStatus) {
                 console.log('错误')
