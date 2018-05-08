@@ -1,147 +1,98 @@
 package com.ssm.common;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * 
- *@Description:ajax请求结果集封装
- *@Author:童志杰
- *@Since:2018年1月10日
+ * @Description:ajax请求结果集封装
+ * @Author:童志杰
+ * @Since:2018年1月10日
  */
 
-public class ResultDataState<T> {
+public class ResultDataState<T> implements Serializable {
 
-	/**
-	 * 设置成功和失败常量
-	 */
-	public final static String SUCCESS = "1";
-	public final static String ERROR = "0";
-	
-	private String code;
-	private String msg;
-	private Boolean isSuccess;
-	private T resultData;
+    /**
+     * 设置成功和失败常量
+     */
+    public final static String SUCCESS = "1";
+    public final static String ERROR = "0";
 
+    private String code;
+    private String msg;
+    private T resultData;
 
 
+    public String getCode() {
+        return code;
+    }
 
-	public ResultDataState(String code) {
-		super();
-		if(Objects.equals(code, SUCCESS)) {
-			isSuccess = true;
-		}else {
-			isSuccess = false;
-		}
-		this.code = code;
-	}
+    public void setCode(String code) {
+        this.code = code;
+    }
 
+    public String getMsg() {
+        return msg;
+    }
 
-	public ResultDataState(String code, String msg) {
-		super();
-		if(Objects.equals(code, SUCCESS)) {
-			isSuccess = true;
-		}else {
-			isSuccess = false;
-		}
-		this.code = code;
-		this.msg = msg;
-	}
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
 
 
-	public ResultDataState() {
-		super();
-		isSuccess = true;
-		this.msg = "默认值";
-		this.code = SUCCESS;
-	}
-	
+    public T getResultData() {
+        return resultData;
+    }
 
-	public String getCode() {
-		return code;
-	}
+    public void setResultData(T resultData) {
+        this.resultData = resultData;
+    }
 
-	public void setCode(String code) {
-		this.code = code;
-	}
+    public void SUCCESS() {
+        this.code = SUCCESS;
+    }
 
-	public String getMsg() {
-		return msg;
-	}
+    public void SUCCESS(String msg) {
+        this.code = SUCCESS;
+        this.msg = msg;
+    }
 
-	public void setMsg(String msg) {
-		this.msg = msg;
-	}
+    public void SUCCESS(String msg, T resultData) {
+        this.code = SUCCESS;
+        this.msg = msg;
+        this.resultData = resultData;
+    }
 
-	public Boolean getIsSuccess() {
-		return isSuccess;
-	}
+    public void SUCCESS(T resultData) {
+        this.code = SUCCESS;
+        this.resultData = resultData;
+    }
 
-	public void setIsSuccess(Boolean isSuccess) {
-		this.isSuccess = isSuccess;
-	}
+    public void ERROR() {
+        this.code = ERROR;
+    }
 
-	public Object getResultData() {
-		return resultData;
-	}
+    public void ERROR(String msg) {
+        this.code = ERROR;
+        this.msg = msg;
+    }
 
-	public void setResultData(T resultData) {
-		this.resultData = resultData;
-	}
+    public void ERROR(String msg, T resultData) {
+        this.code = ERROR;
+        this.msg = msg;
+        this.resultData = resultData;
+    }
 
-	public void SUCCESS() {
-		this.code = SUCCESS;
-		isSuccess = true;
-	}
+    public void ERROR(T resultData) {
+        this.code = ERROR;
+        this.resultData = resultData;
+    }
 
-	public void SUCCESS(String msg) {
-		this.code = SUCCESS;
-		this.msg = msg;
-		isSuccess = true;
-	}
-
-	public void SUCCESS(String msg, T resultData) {
-		this.code = SUCCESS;
-		this.msg = msg;
-		this.resultData = resultData;
-		isSuccess = true;
-	}
-
-	public void SUCCESS(T resultData) {
-		this.code = SUCCESS;
-		this.resultData = resultData;
-		isSuccess = true;
-	}
-
-	public void ERROR() {
-		this.code = ERROR;
-		isSuccess = false;
-	}
-
-	public void ERROR(String msg) {
-		this.code = ERROR;
-		this.msg = msg;
-		isSuccess = false;
-	}
-
-	public void ERROR(String msg, T resultData) {
-		this.code = ERROR;
-		this.msg = msg;
-		this.resultData = resultData;
-		isSuccess = false;
-	}
-
-	public void ERROR(T resultData) {
-		this.code = ERROR;
-		this.resultData = resultData;
-		isSuccess = false;
-	}
-
-	public Boolean isSuccess() {
-		if (code == SUCCESS) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+    public Boolean isSuccess() {
+        if (Objects.equals(code, SUCCESS)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }
