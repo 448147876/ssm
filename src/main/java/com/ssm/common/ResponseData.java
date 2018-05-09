@@ -21,47 +21,43 @@ public class ResponseData<T> implements Serializable {
     private String msg;
     private T data;
 
-    private ResponseData() {
-        super();
-    }
-
     private ResponseData(int status, String msg, T data) {
         this.status = status;
         this.msg = msg;
         this.data = data;
     }
 
-    public static <T> ResponseData<T> Success() {
+    public static <T> ResponseData<T> success() {
         return new ResponseData<T>(ResponseData.SUCCESS, null, null);
     }
 
-    public static <T> ResponseData<T> SuccessByMsg(String msg) {
+    public static <T> ResponseData<T> successByMsg(String msg) {
         return new ResponseData<T>(ResponseData.SUCCESS, msg, null);
     }
 
-    public static <T> ResponseData<T> SuccessByData(String msg, T data) {
+    public static <T> ResponseData<T> successByData(String msg, T data) {
         return new ResponseData<T>(ResponseData.SUCCESS, msg, data);
     }
 
-    public static <T> ResponseData<T> SuccessByData(T data) {
+    public static <T> ResponseData<T> successByData(T data) {
         return new ResponseData<T>(ResponseData.SUCCESS, null, data);
     }
 
 
 
-    public static <T> ResponseData<T> Error() {
+    public static <T> ResponseData<T> error() {
         return new ResponseData<T>(ResponseData.ERROR, null, null);
     }
 
-    public static <T> ResponseData<T> SErrorByMsg(String msg) {
+    public static <T> ResponseData<T> errorByMsg(String msg) {
         return new ResponseData<T>(ResponseData.ERROR, msg, null);
     }
 
-    public static <T> ResponseData<T> ErrorByData(String msg, T data) {
+    public static <T> ResponseData<T> errorByData(String msg, T data) {
         return new ResponseData<T>(ResponseData.ERROR, msg, data);
     }
 
-    public static <T> ResponseData<T> ErrorByData(T data) {
+    public static <T> ResponseData<T> errorByData(T data) {
         return new ResponseData<T>(ResponseData.ERROR, null, data);
     }
 
