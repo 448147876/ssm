@@ -1,14 +1,12 @@
 package com.ssm.common;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * @Description:ajax请求结果集封装
  * @Author:童志杰
  * @Since:2018年1月10日
  */
-
 public class ResponseData<T> implements Serializable {
 
     /**
