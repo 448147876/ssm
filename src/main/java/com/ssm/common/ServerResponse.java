@@ -1,5 +1,7 @@
 package com.ssm.common;
 
+
+
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
